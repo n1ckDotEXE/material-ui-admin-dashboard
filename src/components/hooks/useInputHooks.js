@@ -9,14 +9,21 @@ function useInputHooks() {
 	function handleInputOnChange(e) {
 		let inputValue = e.target.value;
 		let inputName = e.target.name;
-
-		console.log(`${inputName}: ${inputValue}`);
-
 		setInput(inputValue);
 
-		if (matches(inputValue, /[!@#$%^&*()\[\],.?":;{}|<>]/g)) {
+		let checkInputNameAndUseRegexAccordingly;
+		let errorMessage;
+		if (inputName === "First Name" || inputName === "Last Name") {
+			checkInputNameAndUseRegexAccordingly = /[!@#$%^&*()\[\],.?":;{}|<>1234567890]/g;
+			errorMessage = `${inputName} cannot have any special characters or numbers`;
+		} else {
+			checkInputNameAndUseRegexAccordingly = /[!@#$%^&*()\[\],.?":;{}|<>]/g;
+			errorMessage = `${inputName} cannot have any special characters`;
+		}
+
+		if (matches(inputValue, checkInputNameAndUseRegexAccordingly)) {
 			setInputError(true);
-			setErrorMessage(`${inputName} cannot have any special characters`);
+			setErrorMessage(errorMessage);
 		} else {
 			setInputError(false);
 			setErrorMessage("");
