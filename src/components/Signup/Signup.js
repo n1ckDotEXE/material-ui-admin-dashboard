@@ -25,6 +25,23 @@ const useStyles = makeStyles((theme) => ({
 
 function Signup() {
 	const classes = useStyles();
+
+	const [email, setEmail] = useState("");
+	const [userName, setUserName] = useState("");
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [password, setPassword] = useState("");
+
+	function handleOnSubmit(e) {
+		e.preventDefault();
+
+		console.log(email);
+		console.log(userName);
+		console.log(firstName);
+		console.log(lastName);
+		console.log(password);
+	}
+
 	return (
 		<Grid
 			container
@@ -35,14 +52,18 @@ function Signup() {
 			style={{ minHeight: "30vh" }}
 		>
 			<Grid item xs={12}>
-				<form className={classes.root} autoComplete="on">
+				<form
+					className={classes.root}
+					autoComplete="on"
+					onSubmit={handleOnSubmit}
+				>
 					<FormControl error={null}>
 						<InputLabel htmlFor="component-email">Email</InputLabel>
 						<Input
 							id="component-email"
 							name="email"
-							value={""}
-							onChange={null}
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
 						/>
 						<FormHelperText id="component-error-text">
 							{" "}
@@ -56,8 +77,8 @@ function Signup() {
 						<Input
 							id="component-username"
 							name="username"
-							value={""}
-							onChange={null}
+							value={userName}
+							onChange={(e) => setUserName(e.target.value)}
 						/>
 						<FormHelperText id="component-error-text">
 							{" "}
@@ -71,8 +92,8 @@ function Signup() {
 						<Input
 							id="component-firstname"
 							name="firstname"
-							value={""}
-							onChange={null}
+							value={firstName}
+							onChange={(e) => setFirstName(e.target.value)}
 						/>
 						<FormHelperText id="component-error-text">
 							{" "}
@@ -86,8 +107,8 @@ function Signup() {
 						<Input
 							id="component-lastname"
 							name="lastname"
-							value={""}
-							onChange={null}
+							value={lastName}
+							onChange={(e) => setLastName(e.target.value)}
 						/>
 						<FormHelperText id="component-error-text">
 							{" "}
@@ -102,8 +123,8 @@ function Signup() {
 							type="password"
 							id="component-password"
 							name="password"
-							value={""}
-							onChange={null}
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
 						/>
 						<FormHelperText id="component-error-text">
 							{" "}
