@@ -105,7 +105,7 @@ function Signup() {
 						</InputLabel>
 						<Input
 							id="component-username"
-							name="username"
+							name="User Name"
 							value={userName}
 							onChange={(e) => setUserName(e)}
 						/>
@@ -120,7 +120,7 @@ function Signup() {
 						</InputLabel>
 						<Input
 							id="component-firstname"
-							name="firstname"
+							name="First Name"
 							value={firstName}
 							onChange={(e) => setFirstName(e)}
 						/>
@@ -135,7 +135,7 @@ function Signup() {
 						</InputLabel>
 						<Input
 							id="component-lastname"
-							name="lastname"
+							name="Last Name"
 							value={lastName}
 							onChange={(e) => setLastName(e)}
 						/>
@@ -149,7 +149,7 @@ function Signup() {
 							Password
 						</InputLabel>
 						<Input
-							type="password"
+							type="Password"
 							id="component-password"
 							name="password"
 							value={password}
