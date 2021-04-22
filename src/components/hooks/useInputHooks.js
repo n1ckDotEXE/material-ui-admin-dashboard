@@ -13,6 +13,7 @@ function useInputHooks() {
 
 		let checkInputNameAndUseRegexAccordingly;
 		let errorMessage;
+
 		if (inputName === "First Name" || inputName === "Last Name") {
 			checkInputNameAndUseRegexAccordingly = /[!@#$%^&*()\[\],.?":;{}|<>1234567890]/g;
 			errorMessage = `${inputName} cannot have any special characters or numbers`;

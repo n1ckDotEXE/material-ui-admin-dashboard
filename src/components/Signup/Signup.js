@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
 import {
 	FormControl,
 	FormHelperText,
@@ -11,11 +10,9 @@ import {
 	Snackbar,
 	Grid,
 } from "@material-ui/core";
-
 import MuiAlert from "@material-ui/lab/Alert";
-
 import useInputHooks from "../hooks/useInputHooks";
-
+import useEmailHooks from "../hooks/useEmailHooks";
 const useStyles = makeStyles((theme) => ({
 	root: {
 		"& > *": {
@@ -24,53 +21,36 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 }));
-
 function Signup() {
 	const classes = useStyles();
-
-	// const [email, setEmail] = useState("");
-
-	// const [userName, setUserName] = useState("");
-	// const [firstName, setFirstName] = useState("");
-	// const [lastName, setLastName] = useState("");
-
-	// const [password, setPassword] = useState("");
-
-	const [email, setEmail] = useInputHooks("");
-
+	const [email, setEmail, isEmailError, errorMessage] = useEmailHooks();
 	const [
-		userName,
-		setUserName,
+		username,
+		setUsername,
 		inputUsernameError,
 		errorUsernameMessage,
-	] = useInputHooks("");
-
+	] = useInputHooks();
 	const [
 		firstName,
 		setFirstName,
 		inputFirstNameError,
 		errorFirstNameMessage,
-	] = useInputHooks("");
-
+	] = useInputHooks();
 	const [
 		lastName,
 		setLastName,
 		inputLastNameError,
 		errorLastNameMessage,
-	] = useInputHooks("");
-
-	const [password, setPassword] = useInputHooks("");
-
+	] = useInputHooks();
+	const [password, setPassword] = useInputHooks();
 	function handleOnSubmit(e) {
 		e.preventDefault();
-
-		console.log(email);
-		console.log(userName);
+		console.log(username);
 		console.log(firstName);
-		console.log(lastName);
-		console.log(password);
+		// console.log(email);
+		// console.log(lastName);
+		// console.log(password);
 	}
-
 	return (
 		<Grid
 			container
@@ -86,18 +66,18 @@ function Signup() {
 					autoComplete="on"
 					onSubmit={handleOnSubmit}
 				>
-					{/* <FormControl error={null}>
+					<FormControl error={isEmailError}>
 						<InputLabel htmlFor="component-email">Email</InputLabel>
 						<Input
 							id="component-email"
 							name="email"
 							value={email}
-							onChange={(e) => setEmail(e.target.value)}
+							onChange={(e) => setEmail(e)}
 						/>
 						<FormHelperText id="component-error-text">
-							{" "}
+							{isEmailError && errorMessage}
 						</FormHelperText>
-					</FormControl> */}
+					</FormControl>
 					<br />
 					<FormControl error={inputUsernameError}>
 						<InputLabel htmlFor="component-username">
@@ -105,9 +85,10 @@ function Signup() {
 						</InputLabel>
 						<Input
 							id="component-username"
-							name="User Name"
-							value={userName}
-							onChange={(e) => setUserName(e)}
+							name="Username"
+							value={username}
+							onChange={null}
+							onChange={(e) => setUsername(e)}
 						/>
 						<FormHelperText id="component-error-text">
 							{inputUsernameError && errorUsernameMessage}
@@ -115,11 +96,11 @@ function Signup() {
 					</FormControl>
 					<br />
 					<FormControl error={inputFirstNameError}>
-						<InputLabel htmlFor="component-firstname">
+						<InputLabel htmlFor="component-firstName">
 							First Name
 						</InputLabel>
 						<Input
-							id="component-firstname"
+							id="component-firstName"
 							name="First Name"
 							value={firstName}
 							onChange={(e) => setFirstName(e)}
@@ -130,11 +111,11 @@ function Signup() {
 					</FormControl>
 					<br />
 					<FormControl error={inputLastNameError}>
-						<InputLabel htmlFor="component-lastname">
+						<InputLabel htmlFor="component-lastName">
 							Last Name
 						</InputLabel>
 						<Input
-							id="component-lastname"
+							id="component-lastName"
 							name="Last Name"
 							value={lastName}
 							onChange={(e) => setLastName(e)}
@@ -143,22 +124,19 @@ function Signup() {
 							{inputLastNameError && errorLastNameMessage}
 						</FormHelperText>
 					</FormControl>
-					<br />
-					<FormControl error={null}>
-						<InputLabel htmlFor="component-password">
-							Password
-						</InputLabel>
-						<Input
-							type="Password"
-							id="component-password"
-							name="password"
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-						/>
-						<FormHelperText id="component-error-text">
-							{" "}
-						</FormHelperText>
-					</FormControl>
+					{/*
+          <br />
+          <FormControl error={null}>
+            <InputLabel htmlFor="component-password">Password</InputLabel>
+            <Input
+              type="password"
+              id="component-password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <FormHelperText id="component-error-text"> </FormHelperText>
+          </FormControl> */}
 					<br />
 					<Button variant="contained" color="primary" type="submit">
 						Submit
